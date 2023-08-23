@@ -6,6 +6,12 @@ const { createUser, login } = require('../controllers/userControllers');
 const auth = require('../middlewares/auth');
 const NotFoundError = require('../utils/errors/NotFoundError');
 
+router.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 router.post('/signup', createUserValidation, createUser);
 router.post('/signin', loginValidation, login);
 
